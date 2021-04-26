@@ -465,18 +465,18 @@ class FastRCNNOutputLayers(nn.Module):
         else:
             proposal_boxes = gt_boxes = torch.empty((0, 4), device=proposal_deltas.device)
         
-        print("_____________________________________________________")
-        print("_____________________________________________________")
-        print("_____________________________________________________")
-        print(cross_entropy(scores, gt_classes, reduction="mean"))
+        #print("_____________________________________________________")
+        #print("_____________________________________________________")
+        #print("_____________________________________________________")
+        #print(cross_entropy(scores, gt_classes, reduction="mean"))
         loss_new = nn.NLLLoss()
         input_new = torch.tensor([[-(17-len(proposals)),-(17-len(proposals))]], device='cuda:0',requires_grad=True, dtype=torch.float)
         target_new = torch.tensor([1], device='cuda:0')
         output_new = loss_new(input_new, target_new)
-        print(output_new)
-        print("_____________________________________________________")
-        print("_____________________________________________________")
-        print("_____________________________________________________")
+        #print(output_new)
+        #print("_____________________________________________________")
+        #print("_____________________________________________________")
+        #print("_____________________________________________________")
         losses = {
             "loss_cls": output_new,
             "loss_box_reg": self.box_reg_loss(
