@@ -469,16 +469,16 @@ class FastRCNNOutputLayers(nn.Module):
         #print("_____________________________________________________")
         #print("_____________________________________________________")
         #print(cross_entropy(scores, gt_classes, reduction="mean"))
-        loss_new = nn.NLLLoss()
-        input_new = torch.tensor([[-(17-len(predictions)),-(17-len(predictions))]], device='cuda:0',requires_grad=True, dtype=torch.float)
-        target_new = torch.tensor([1], device='cuda:0')
-        output_new = loss_new(input_new, target_new)
+        #loss_new = nn.NLLLoss()
+        #input_new = torch.tensor([[-(17-len(predictions)),-(17-len(predictions))]], device='cuda:0',requires_grad=True, dtype=torch.float)
+        #target_new = torch.tensor([1], device='cuda:0')
+        #output_new = loss_new(input_new, target_new)
         #print(output_new)
         #print("_____________________________________________________")
         #print("_____________________________________________________")
         #print("_____________________________________________________")
         losses = {
-            "loss_cls": output_new,
+            "loss_cls": cross_entropy(scores, gt_classes, reduction="mean"),
             "loss_box_reg": self.box_reg_loss(
                 proposal_boxes, gt_boxes, proposal_deltas, gt_classes
             ),
