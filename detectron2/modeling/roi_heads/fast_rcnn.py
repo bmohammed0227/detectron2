@@ -464,9 +464,16 @@ class FastRCNNOutputLayers(nn.Module):
             )
         else:
             proposal_boxes = gt_boxes = torch.empty((0, 4), device=proposal_deltas.device)
-
+        
+        print("_____________________________________________________")
+        print("_____________________________________________________")
+        print("_____________________________________________________")
+        print(cross_entropy(scores, gt_classes, reduction="mean"))
+        print("_____________________________________________________")
+        print("_____________________________________________________")
+        print("_____________________________________________________")
         losses = {
-            "loss_cls": (17-len(proposals)),
+            "loss_cls": cross_entropy(scores, gt_classes, reduction="mean"),
             "loss_box_reg": self.box_reg_loss(
                 proposal_boxes, gt_boxes, proposal_deltas, gt_classes
             ),
