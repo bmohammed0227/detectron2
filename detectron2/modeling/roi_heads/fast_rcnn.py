@@ -476,8 +476,8 @@ class FastRCNNOutputLayers(nn.Module):
         #print(output_new)
         #print("_____________________________________________________")
         print("_____________________________________________________")
-        print("proposal_deltas")
-        print(proposal_deltas)
+        print("len(proposal_deltas)")
+        print(len(proposal_deltas))
         print("_____________________________________________________")
         losses = {
             "loss_cls": cross_entropy(scores, gt_classes, reduction="mean"),
